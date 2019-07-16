@@ -1,0 +1,49 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /proposals:
+    get:
+      operationId: "proposals.read"
+      tags:
+        - "Manifiesto"
+      summary: "Manifiesto API test feeder"
+      description: ""
+      responses:
+        200:
+          description: "Successful read people list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                politicalParty:
+                  type: "string"
+                title:
+                  type: "string"
+
+
+  /parties:
+    get:
+      operationId: "parties.read"
+      tags:
+        - "political parties"
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              properties:
+                synonyms:
+                  type: "array"
+
