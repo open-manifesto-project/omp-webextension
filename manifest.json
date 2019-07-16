@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Open Manifesto Project",
+  "version": "0.1",
+  "description": "The official Open Manifesto Project Mozilla connector",
+  "icons": {
+    "48": "static/img/main.png",
+    "96": "static/img/main_96.png"
+  },
+  "browser_action": {
+    "default_title": "Open Manifesto Project"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "omp.js",
+        "split.js"
+      ],
+      "run_at": "document_end"
+    }
+
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "web_accessible_resources": [
+    "static/img/loading.gif"
+  ],
+  "permissions": [
+    "webNavigation"
+  ]
+}
