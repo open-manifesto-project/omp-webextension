@@ -1,15 +1,13 @@
 from flask import Flask, jsonify, abort
-import pdb
-
 from flask_restful.utils.cors import crossdomain
-
+import pdb
 app = Flask(__name__)
 MINIFED_PROPOSALS = {
         'cs':
             [
                 {
-                "id": 1,
-                "title": "Cs proposal 1",
+                    "id": 1,
+                    "title": "Cs proposal 1",
                 },
 
                 {
@@ -21,17 +19,19 @@ MINIFED_PROPOSALS = {
              'pp':
             [
                 {
-                "id": 1,
-                "title": "PP proposal 1",
+                    "id": 1,
+                    "title": "PP proposal 1",
                 },
 
                 {
+
                     "id": 2,
                     "title": "PP proposal 2",
 
                 }
             ]
-    },
+    }
+
 PROPOSALS = {
         'cs':
             [
@@ -71,7 +71,7 @@ PROPOSALS = {
 
                 }
             ]
-    },
+    }
 
 
 
@@ -95,7 +95,7 @@ def readProposals():
 @crossdomain(origin='*')
 def readProposal(party_id, proposal_id):
     if party_id in PARTIES.keys():
-        for proposal in PROPOSALS[0][party_id]:
+        for proposal in PROPOSALS[party_id]:
             if proposal['id'] == proposal_id:
                 return jsonify({
                     'proposal': proposal
