@@ -34,8 +34,8 @@ function metasList2contentsList(metasList){
 ###############################################################################################
 */
 
-const SITE = window.location.href.split('/')[2].split('.').slice(1).join('.');
 
+const SITE = window.location.href.split('/')[2].split('.').slice(0).slice(-2).join('.');
 
 const JOURNALS = [
     'lavanguardia.com', 'elpais.com', 'elmundo.es', 'abc.es', '20minutos.es',
@@ -74,22 +74,16 @@ function init() {
 	keywordsList = metasList2contentsList(keywordsList); //see UTILS section
 
 
-///// VISUAL
-
-	var button = document.createElement("BUTTON");
+	let button = document.createElement("BUTTON");
 	button.textContent = "get proposals";
 
-	var body = document.body;
-	var main = document.createElement("DIV");
-	main.id = "main";
-
-	var proposals = document.createElement("DIV");
+	let body = document.body;
+	let html = document.getElementsByTagName("HTML")[0];
+	let proposals = document.createElement("DIV");
 	proposals.id = "proposals";
-
-	var news = document.createElement("DIV");
+	let news = document.createElement("DIV");
 	news.id = "news";
 
-/////
 
 	/*
     ###############################################################################################
@@ -97,46 +91,18 @@ function init() {
     ###############################################################################################
     */
 
-	proposals.appendChild(button);
-
-	main.appendChild(news);
-	main.appendChild(proposals);
-
-	while (body.firstChild) {
-		news.appendChild(body.firstChild)
-	}
-
-	body.style.cssText = "height: 100%;" +
-		"padding: 8px;" +
-		"box-sizing: border-box;";
-
-
-	for (let element in [proposals, news]) {
-		[proposals, news][element].style.cssText = "box-sizing: border-box;" +
-			"overflow-y: auto;" +
-			"overflow-x: hidden;" +
-			"padding: 10px;" +
-			"border: 1px solid #C0C0C0;" +
-			"box-shadow: inset 0 1px 2px #e4e4e4;" +
-			"background-color: #fff;"
-	}
-
-
-	body.appendChild(main);
-
-	try {
-
-		Split(['#news', '#proposals'], {
-			direction: 'vertical',
-			sizes: [70, 30],
-			gutterSize: 8,
-			cursor: "row-resize"
-		})
-
-	} catch (err) {
-		console.log("Error at splitting\n");
-		console.log(err)
-	}
+    proposals.appendChild(button);
+    while (body.firstChild) {
+        news.appendChild(body.firstChild)
+    }
+    body.style.height = "100%";
+    html.style.height = "100%";
+    proposals.style.height = "20%";
+    news.style.height = "80%";
+    news.style.overflowY = "scroll";
+    proposals.style.overflowY = "scroll";
+    body.appendChild(news);
+    body.appendChild(proposals);
 
 
     function create_proposal_container(proposal_object, party){
@@ -157,7 +123,8 @@ function init() {
 
 			function handle_message(message){
 				response = JSON.parse(message).proposal;
-				div.innerHTML += `<ul>` +
+				div.innerHTML = `<h2> ${party} - ${proposal_object.title}</h2>` +
+					`<ul>` +
 					`<li>` +
 					`<b>Topic:</b> ${response.topic}` +
 					`</li>` +
@@ -213,5 +180,7 @@ function init() {
 	button.addEventListener("click", get_proposals)
 }
 
-if (JOURNALS.indexOf(SITE) > 0)
+if (JOURNALS.indexOf(SITE) > -1)
 	init();
+else
+	console.log("not journals");
