@@ -2,13 +2,23 @@
   "manifest_version": 2,
   "name": "Open Manifesto Project",
   "version": "0.1",
-  "description": "The official Open Manifesto Project Mozilla connector",
+  "author": "cairimitoaie@protonmail.com",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "es",
   "icons": {
-    "48": "static/img/main.png",
-    "96": "static/img/main_96.png"
+    "48": "static/img/icon_48.png",
+    "96": "static/img/icon_96.png"
   },
   "browser_action": {
-    "default_title": "Open Manifesto Project"
+    "browser_style": true,
+    "default_title": "Open Manifesto Project",
+    "default_popup": "html/options.html",
+    "default_icon": {
+      "19": "static/img/icon_19.png",
+      "38": "static/img/icon_38.png"
+    }
+
+
   },
   "content_scripts": [
     {
@@ -16,21 +26,25 @@
         "<all_urls>"
       ],
       "js": [
-        "omp.js"
+        "js/app.js"
       ],
       "run_at": "document_end"
     }
-
   ],
+
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "page": "html/background.html"
   },
+
   "web_accessible_resources": [
     "static/img/loading.gif"
   ],
+
   "permissions": [
-    "webNavigation"
+    "*://*/*",
+    "tabs",
+    "menus",
+    "webNavigation",
+    "activeTab"
   ]
 }

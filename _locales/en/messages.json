@@ -1,0 +1,21 @@
+{
+  "action_getProposalsTitle": {
+    "message": "Get proposals",
+    "description": "Get proposals button"
+  },
+  "extensionDescription": {
+    "message": "The official Open Manifesto Project Mozilla connector",
+    "description": "The official Open Manifesto Project Mozilla connector"
+  },
+
+  "inputLimitPlaceholder": {
+    "message": "Type ...",
+    "description": "Proposals limit placeholder"
+  },
+
+  "actionConfirmText": {
+    "message": "Submit changes",
+    "description": "Confirm changes button text"
+  }
+}
+

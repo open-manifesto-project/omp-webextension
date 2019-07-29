@@ -1,0 +1,184 @@
+html, body {
+    width: 350px;
+}
+
+a {
+    margin: 10px;
+    display: inline-block;
+}
+
+h2 {
+    text-align: center;
+}
+
+.top-panel {
+    margin: 10px;
+    padding: 10px;
+}
+
+.panel-3 {
+    padding: 10px;
+}
+
+.form{
+    border: 1px solid #ccc;
+}
+
+
+/*
+    ################################################
+    ################################################
+
+                BACKGROUND COLORS
+
+    ################################################
+    ################################################
+
+*/
+
+
+/* BLUE */
+/* colors */
+.blue-40 {
+    background: #45a1ff;
+}
+
+.blue-60 {
+    background: #0060df;
+}
+
+.blue-90 {
+    background: #000f40;
+}
+
+/* motions */
+.blue-60:hover {
+    background: #003eaa;
+}
+
+.blue-60:focus {
+    background: #002275;
+    box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3)
+}
+
+.blue-60:disabled {
+    opacity: 40%;
+}
+
+/* TEAL */
+.teal-50 {
+    background: #000f40;
+}
+
+.teal-70 {
+    background: #008ea4;
+}
+
+.teal-90 {
+    backgroud: #002d3e;
+}
+
+
+/* MAGENTA */
+
+.magenta-50 {
+    background: #ff1ad9;
+}
+
+.magenta-70 {
+    background: #b5007f;
+}
+
+.magenta-90 {
+    backgroud: #440027;
+}
+
+
+/* GREY */
+
+.grey-10 {
+    background: #f9f9fa;
+}
+
+.grey-30 {
+    background: #d7d7db;
+}
+
+.grey-50 {
+    background: #737373;
+}
+
+.grey-70 {
+    background: #38383d;
+}
+
+.grey-90 {
+    background: #0c0c0d;
+}
+
+
+/*
+    ################################################
+    ################################################
+
+                TEXT COLORS
+
+    ################################################
+    ################################################
+
+*/
+
+/* DARK COLOR, LIGHT BACKGROUND */
+
+.primary-dark {
+    color: #0c0c0d;
+}
+
+.secondary-dark {
+    color: #737373;
+}
+
+/* LIGHT COLOR, DARK BACKGROUND */
+.primary-light {
+    color: #ffffff;
+}
+
+.secondary-light {
+    color: #f9f9fa;
+}
+
+
+/*
+    ################################################
+    ################################################
+
+                INPUTS
+
+    ################################################
+    ################################################
+
+*/
+
+.button {
+    border-radius: 5px;
+    border: 0px solid;
+    height: 32px;
+    padding: 8px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: auto;
+}
+
+.input-label {
+    border: 0px solid;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    padding: 8px;
+    width: 80%;
+    height: 32px;
+}
+
+::placeholder {
+    color: #737373;
+}
+
