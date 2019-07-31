@@ -75,7 +75,7 @@ h2 {
 }
 
 .teal-90 {
-    backgroud: #002d3e;
+    background: #002d3e;
 }
 
 
@@ -90,7 +90,7 @@ h2 {
 }
 
 .magenta-90 {
-    backgroud: #440027;
+    background: #440027;
 }
 
 
@@ -161,21 +161,38 @@ h2 {
 
 .button {
     border-radius: 5px;
-    border: 0px solid;
+    border: 0 solid;
     height: 32px;
-    padding: 8px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 8px 20px;
     width: auto;
 }
 
 .input-label {
-    border: 0px solid;
+    border: 0 solid;
     margin-bottom: 8px;
     border-radius: 2px;
     padding: 8px;
     width: 80%;
     height: 32px;
+}
+
+input {
+    border-color: rgba(12, 12, 13, 0.2);
+    border-radius: 2px;
+    border-bottom: 8px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    width: auto;
+    height: 32px;
+}
+
+input:hover {
+    border-color: rgba(12, 12, 13, 0.3);
+}
+
+input:focus{
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
 ::placeholder {

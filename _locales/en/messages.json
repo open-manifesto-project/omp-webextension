@@ -8,14 +8,34 @@
     "description": "The official Open Manifesto Project Mozilla connector"
   },
 
-  "inputLimitPlaceholder": {
+  "inputGenericPlaceholder": {
     "message": "Type ...",
-    "description": "Proposals limit placeholder"
+    "description": "Generic input placeholder"
+  },
+
+  "inputCommaSeparatedPlaceholder": {
+    "message": "Type comma-separated values, eg: foo, bar, baz",
+    "description": "Comma-separated input placeholder"
   },
 
   "actionConfirmText": {
     "message": "Submit changes",
     "description": "Confirm changes button text"
+  },
+
+  "inputLimitLabel": {
+    "message": "Proposals limit",
+    "description": "Set a limit for searching proposals"
+  },
+
+  "inputEndpointLabel": {
+    "message": "Endpoint",
+    "description": "Set endpoint"
+  },
+
+  "inputJournalsLabel": {
+    "message": "Journals",
+    "description": "Set journals"
   }
 }
 

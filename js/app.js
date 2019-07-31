@@ -1,6 +1,6 @@
 class App{
 
-    constructor(){
+    constructor(limit, endpoint){
 
 
         this.constants = {
@@ -40,8 +40,8 @@ class App{
         };
 
         // endpoint and limit values, set by the popup Options menu.
-        this.endpoint = document.getElementById('endpoint');
-        this.limit = document.getElementById("proposalsLimit") || 5;
+        this.endpoint = endpoint;
+        this.limit = limit;
 
         // keywords array which needs to be computed with a list of metas by app.extractKeywordsFromMetas(metasList).
         // this array will be sent when searching proposals by keywords -> app.getProposals()
@@ -139,7 +139,8 @@ class App{
          */
 
         let app = this;
-        this.visualReferences.action_getProposals.addEventListener("click", this.getProposals);
+        this.visualReferences.action_getProposals.addEventListener("click", this.getProposals.bind(this));
+
     }
 
     buildCustomVisuals(newFunc){
@@ -150,7 +151,7 @@ class App{
     getParties(){
 
         const sending = browser.runtime.sendMessage({
-            endpoint: 'http://localhost:5000',
+            endpoint: this.endpoint,
             type: "parties"
         });
 
@@ -168,10 +169,11 @@ class App{
 
     // needed by getProposals
     createProposalContainer(proposalObject, party){
-        console.log(party);
+
+        let id = `proposal-${party}/${proposalObject.id}`;
         let div = document.createElement("DIV");
-        div.id = `proposal-${party}/${proposalObject.id}`;
-        app.visualReferences.innerProposals[div.id] = div;
+        div.id = id;
+        this.visualReferences.innerProposals[div.id] = div;
         let header = document.createElement("H2");
         header.innerHTML = `${party} - ${proposalObject.title}`;
         div.appendChild(header);
@@ -179,7 +181,7 @@ class App{
 
         function getProposalInfo(event){
             const sending = browser.runtime.sendMessage({
-                endpoint: app.endpoint,
+                endpoint: this.endpoint,
                 type: "one",
                 party: party,
                 id: proposalObject.id
@@ -207,17 +209,17 @@ class App{
             }
         }
 
-        div.addEventListener("click", getProposalInfo);
+        div.addEventListener("click", getProposalInfo.bind(this));
+
 
         this.visualReferences.proposals.appendChild(div);
     }
 
     getProposals(){
 
-        app.endpoint = 'http://localhost:5000';
         const sending = browser.runtime.sendMessage({
-            endpoint: app.endpoint,
-            keywords: app.keywords,
+            endpoint: this.endpoint,
+            keywords: this.keywords,
             type: "many"
         });
 
@@ -244,30 +246,21 @@ class App{
         function handleError(error){
             console.log(`getProposals:: ${error}`)
         }
-
-        sending.then(handleMessage, handleError)
+        let app = this;
+        sending.then(handleMessage.bind(this), handleError.bind(this))
     }
 
+
+    destroy(){
+        document.body.removeChild(this.visualReferences.proposals);
+        while (this.visualReferences.news.firstChild)
+            document.body.append(this.visualReferences.news.firstChild);
+
+        document.body.removeChild(this.visualReferences.news)
+
+    }
 }
 
-// get the two top level domain name of the current href, so id doesn't matter if a website's third level domain is 'www' or nonexistent
-const SITE = window.location.href.split('/')[2].split('.').slice(0).slice(-2).join('.');
-
-//defined journals where this script will be applied
-//
-const JOURNALS = [
-    'lavanguardia.com', 'elpais.com', 'elmundo.es', 'abc.es', '20minutos.es',
-    'elconfidencial.com', 'elespanol.com', 'okdiario.com', 'eldiario.es', 'publico.es'
-];
-
-if (JOURNALS.indexOf(SITE) > -1){
-    let app = new App();
-    app.extractKeywordsFromMetas([...document.getElementsByTagName("meta")]); //sets app.keywords but also returns them
-    app.buildVisuals();
-}
-else {
-    console.log("not journals");
-}
 
 
 

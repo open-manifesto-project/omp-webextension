@@ -1,19 +1,41 @@
 {
   "action_getProposalsTitle": {
-    "message": "Cargar propuestas",
-    "description": "Boton para cargar propuestas"
+    "message": "",
+    "description": ""
   },
   "extensionDescription": {
-    "message": "El conector oficial de Open Manifiesto Project con Mozilla Firefox",
-    "description": "El conector oficial de Open Manifiesto Project con Mozilla Firefox"
+    "message": "",
+    "description": ""
   },
-  "inputLimitPlaceholder": {
-    "message": "Escribe ...",
-    "description": "Placeholder para el campo de limite de propuestas"
+
+  "inputGenericPlaceholder": {
+    "message": "",
+    "description": ""
+  },
+
+  "inputCommaSeparatedPlaceholder": {
+    "message": "",
+    "description": ""
   },
 
   "actionConfirmText": {
-    "message": "Confirmar cambios",
-    "description": "Texto del boton de confirmacion de cambios"
+    "message": "",
+    "description": ""
+  },
+
+  "inputLimitLabel": {
+    "message": "",
+    "description": ""
+  },
+
+  "inputEndpointLabel": {
+    "message": "",
+    "description": ""
+  },
+
+  "inputJournalsLabel": {
+    "message": "",
+    "description": ""
   }
 }
+
