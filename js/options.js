@@ -2,7 +2,7 @@
 
 
 /*** WIP
-function sanitizeInput(){
+ function sanitizeInput(){
     Object.entries(inputs).forEach(
         ([key, value]) => {
             if(value.value == null){
@@ -14,7 +14,7 @@ function sanitizeInput(){
     )
 }
 
-**/
+ **/
 function setInputStyle(element,type){
     let borderColor = element.style.borderColor;
     let boxShadow = element.style.boxShadow;
@@ -44,7 +44,7 @@ let inputs = {
     endpoint: document.querySelector("#input-endpoint"),
     journals: document.querySelector("#input-journals"),
     action_confirm: document.querySelector("#action_confirm")
-}
+};
 // inputs init
 document.querySelector("#label-limit").insertAdjacentText("afterbegin", browser.i18n.getMessage("inputLimitLabel"));
 document.querySelector("#label-endpoint").insertAdjacentText("afterbegin", browser.i18n.getMessage("inputEndpointLabel"));
@@ -54,36 +54,25 @@ inputs.limit.placeholder = browser.i18n.getMessage("inputGenericPlaceholder");
 inputs.endpoint.placeholder = browser.i18n.getMessage("inputGenericPlaceholder");
 inputs.endpoint.value = 'http://localhost:5000';
 inputs.journals.placeholder = browser.i18n.getMessage("inputCommaSeparatedPlaceholder");
-
-
 inputs.action_confirm.textContent = browser.i18n.getMessage("actionConfirmText");
 
 
 
+browser.tabs.executeScript({file: "/js/app.js"})
+    .then(inputs.action_confirm.addEventListener("click", (e)=>{
+        browser.tabs.sendMessage(tabs[0].id, {
+            endpoint: inputs.endpoint.value,
+            limit: inputs.limit.value,
+            journals: inputs.journals.value,
+        })
+    }
+));
 
-/**
- * There was an error executing the script.
- * Display the popup's error message, and hide the normal UI.
- */
-function reportExecuteScriptError(error) {
-    console.error(`Failed to execute content script: ${error.message}`);
-}
 
-function actionConfirmManager() {
-    inputs.action_confirm.addEventListener("click", (evt => {
 
-    }));
 
-}
 
-browser.tabs.executeScript({file: "/js/load_defaults.js"})
-    .then(actionConfirmManager())
-    .catch(reportExecuteScriptError);
 
-// content script comms
 
-/**
- * When the popup loads, inject a content script into the active tab,
- * and add a click handler.
- * If we couldn't inject the script, handle the error.
- */
+
+

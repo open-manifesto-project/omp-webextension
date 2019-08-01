@@ -4,7 +4,7 @@ class App{
 
 
         this.constants = {
-            // common <meta> objects for SEO analysys.
+            // common <meta> objects for SEO analysis.
             commonMetas: {
                 "name": ["category", "category_slug"],
                 "property": ["article:tag", "article:section", "og:type", "article:section"]
@@ -262,6 +262,47 @@ class App{
 }
 
 
+
+if (window.hasRun) {
+    app.destroy();
+}
+window.hasRun = true;
+
+
+
+function main(){
+
+    console.log("initializing");
+
+    // get the two top level domain name of the current href, so id doesn't matter if a website's third level domain is 'www' or nonexistent
+    const SITE = window.location.href.split('/')[2].split('.').slice(0).slice(-2).join('.');
+
+    //defined journals where this script will be applied
+    //
+    let JOURNALS = [
+        'lavanguardia.com', 'elpais.com', 'elmundo.es', 'abc.es', '20minutos.es',
+        'elconfidencial.com', 'elespanol.com', 'okdiario.com', 'eldiario.es', 'publico.es'
+    ];
+
+    try {
+
+        if (JOURNALS.indexOf(SITE) > -1){
+            var app = new App(5, 'http:localhost:5000');
+            app.extractKeywordsFromMetas([...document.getElementsByTagName("meta")]); //sets app.keywords but also returns them
+            app.buildVisuals();
+        }
+        else {
+            console.log("not journals");
+        }
+
+
+    } catch (e){
+        console.log(e);
+    }
+}
+
+
+main();
 
 
 
